@@ -193,9 +193,23 @@ if st.button("Calculate"):
 
         # Compare the final accumulated corpus with the desired corpus
         st.subheader("Retirement Plan Conclusion")
+        currency_in_words = currency.split(' ')[0]
 
         if final_accumulated_corpus >= final_desired_corpus:
-            st.success(f"Hurray! 🎉 You will have {symbol}{final_accumulated_corpus:,.2f} by age {final_age}, which is more than your desired retirement corpus of {symbol}{final_desired_corpus:,.2f}. You're all set for retirement! 🚀")
+            st.success(f"""
+            🎉 **Hurray!**  
+            - You will have **{symbol}{final_accumulated_corpus:,.2f}** by age **{final_age}**.  
+            - This is more than your desired retirement corpus of **{final_desired_corpus:,.2f} {currency_in_words}**.  
+            
+            ✅ You're all set for retirement! 🚀
+            """)
         else:
             shortfall = final_desired_corpus - final_accumulated_corpus
-            st.warning(f"Your projected corpus at age {final_age} is {symbol}{final_accumulated_corpus:,.2f}, which is short of your desired corpus by {symbol}{shortfall:,.2f}. You may need to increase your annual investment or retirement age to achieve your target. 📈")
+            
+            st.warning(f"""
+            ⚠️ **Shortfall Detected!**  
+            - Your projected corpus at age **{final_age}** is **{symbol}{final_accumulated_corpus:,.2f}**  
+            - This is **short** by **{symbol}{shortfall:,.2f}** from your desired corpus of **{final_desired_corpus:,.2f} {currency_in_words}**.
+            
+            📈 You may need to **increase your annual investment** or **extend your retirement age** to achieve your target.
+            """)
