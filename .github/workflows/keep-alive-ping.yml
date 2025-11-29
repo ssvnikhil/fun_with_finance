@@ -1,0 +1,15 @@
+name: Ping Streamlit App Keep Alive
+on:
+  schedule:
+    # Schedule the action to run every 30 minutes
+    - cron: '*/30 * * * *'
+  # Allows you to manually run the workflow from the 'Actions' tab if needed
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the Streamlit App URL
+        # Use curl command to send an HTTP GET request to your app's URL
+        run: curl -I https://funwithfinance.streamlit.app/
